@@ -309,18 +309,18 @@ const LevelSetCards = <TLevel extends string, TItem>({
   if (!selectedCollection) {
     return (
       <div className={clsx('flex flex-col w-full gap-4')}>
-        <div className="mx-4 px-4 py-3 rounded-xl bg-[var(--card-color)] border-2 border-[var(--border-color)]">
-          <p className="text-sm text-[var(--secondary-color)]">{loadingText}</p>
+        <div className='mx-4 px-4 py-3 rounded-xl bg-[var(--card-color)] border-2 border-[var(--border-color)]'>
+          <p className='text-sm text-[var(--secondary-color)]'>{loadingText}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col w-full gap-4">
+    <div className='flex flex-col w-full gap-4'>
       {!hasProgressData && (
-        <div className="mx-4 px-4 py-3 rounded-xl bg-[var(--card-color)] border-2 border-[var(--border-color)]">
-          <p className="text-sm text-[var(--secondary-color)]">{tipText}</p>
+        <div className='mx-4 px-4 py-3 rounded-xl bg-[var(--card-color)] border-2 border-[var(--border-color)]'>
+          <p className='text-sm text-[var(--secondary-color)]'>{tipText}</p>
         </div>
       )}
 
@@ -329,7 +329,8 @@ const LevelSetCards = <TLevel extends string, TItem>({
           playClick();
           setIsModalOpen(true);
         }}
-        className="px-2 py-3"
+        className='px-2 py-3'
+        // borderRadius='3xl'
       >
         <MousePointer />
         Quick Select
@@ -348,7 +349,7 @@ const LevelSetCards = <TLevel extends string, TItem>({
       />
 
       {masteredCount > 0 && (
-        <div className="flex justify-end px-4">
+        <div className='flex justify-end px-4'>
           <button
             onClick={() => {
               playClick();
@@ -365,15 +366,15 @@ const LevelSetCards = <TLevel extends string, TItem>({
           >
             {hideMastered ? (
               <>
-                <FilterX size={20} className="text-[var(--main-color)]" />
-                <span className="text-[var(--main-color)]">
+                <FilterX size={20} className='text-[var(--main-color)]' />
+                <span className='text-[var(--main-color)]'>
                   Show All Sets ({masteredCount} mastered hidden)
                 </span>
               </>
             ) : (
               <>
-                <Filter size={20} className="text-[var(--secondary-color)]" />
-                <span className="text-[var(--secondary-color)]">
+                <Filter size={20} className='text-[var(--secondary-color)]' />
+                <span className='text-[var(--secondary-color)]'>
                   Hide Mastered Sets ({masteredCount})
                 </span>
               </>
@@ -415,11 +416,11 @@ const LevelSetCards = <TLevel extends string, TItem>({
                 )}
                 size={28}
               />
-              <span className="max-lg:hidden">
+              <span className='max-lg:hidden'>
                 Levels {firstSetNumber}
                 {firstSetNumber !== lastSetNumber ? `-${lastSetNumber}` : ''}
               </span>
-              <span className="lg:hidden">Level {firstSetNumber}</span>
+              <span className='lg:hidden'>Level {firstSetNumber}</span>
             </h3>
 
             {!collapsedRows.includes(rowIndex) && (
@@ -471,9 +472,9 @@ const LevelSetCards = <TLevel extends string, TItem>({
                         }}
                       >
                         {isSelected ? (
-                          <CircleCheck className="mt-0.5 text-[var(--background-color)] duration-250" />
+                          <CircleCheck className='mt-0.5 text-[var(--background-color)] duration-250' />
                         ) : (
-                          <Circle className="mt-0.5 text-[var(--border-color)] duration-250" />
+                          <Circle className='mt-0.5 text-[var(--border-color)] duration-250' />
                         )}
                         {setTemp.name.replace('Set ', 'Level ')}
                       </button>
@@ -488,15 +489,15 @@ const LevelSetCards = <TLevel extends string, TItem>({
         );
       })}
 
-      <div ref={loaderRef} className="flex justify-center py-4">
+      <div ref={loaderRef} className='flex justify-center py-4'>
         {isLoadingMore && (
           <Loader2
-            className="animate-spin text-[var(--secondary-color)]"
+            className='animate-spin text-[var(--secondary-color)]'
             size={24}
           />
         )}
         {hasMoreRows && !isLoadingMore && (
-          <span className="text-sm text-[var(--secondary-color)]">
+          <span className='text-sm text-[var(--secondary-color)]'>
             Scroll for more ({totalRows - visibleRowCount} rows remaining)
           </span>
         )}

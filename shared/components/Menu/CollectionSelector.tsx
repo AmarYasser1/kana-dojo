@@ -122,6 +122,7 @@ const CollectionSelector = () => {
               colorScheme={isSelected ? 'main' : undefined}
               borderColorScheme={isSelected ? 'main' : undefined}
               borderBottomThickness={isSelected ? 6 : 0}
+              borderRadius='3xl'
               className={clsx(
                 'flex-1 px-4 py-3 flex-col gap-1',
                 isSelected
