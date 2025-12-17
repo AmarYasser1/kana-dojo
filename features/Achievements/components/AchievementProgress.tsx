@@ -13,6 +13,7 @@ import useAchievementStore, {
 import useStatsStore from '@/features/Progress/store/useStatsStore';
 import { useClick } from '@/shared/hooks/useAudio';
 import { cardBorderStyles, buttonBorderStyles } from '@/shared/lib/styles';
+import { ActionButton } from '@/shared/components/ui/ActionButton';
 
 const rarityConfig: Record<
   AchievementRarity,
@@ -340,7 +341,10 @@ const AchievementProgress = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * (index + 1) }}
-                  className={clsx('p-6 text-center', cardBorderStyles)}
+                  className={clsx(
+                    'p-6 text-center border-1 border-[var(--border-color)]',
+                    cardBorderStyles
+                  )}
                 >
                   <div className='text-3xl font-bold text-[var(--main-color)] mb-1'>
                     {stat.value}
@@ -389,38 +393,37 @@ const AchievementProgress = () => {
         <div className='max-w-6xl mx-auto'>
           <div className='flex flex-wrap gap-4 mb-8 justify-center'>
             {categories.map((category, index) => {
-              const stats = getCategoryStats(category.id);
+              const categoryStats = getCategoryStats(category.id);
               const CategoryIcon = category.icon;
               const isSelected = selectedCategory === category.id;
 
               return (
-                <motion.button
+                <motion.div
                   key={category.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index }}
-                  onClick={() => handleCategorySelect(category.id)}
-                  className={clsx(
-                    'flex items-center gap-2 px-4 py-3 rounded-2xl transition-all duration-200 hover:cursor-pointer',
-                    'font-medium',
-                    isSelected
-                      ? 'bg-[var(--main-color)] text-[var(--background-color)] border-b-6 border-[var(--main-color-accent)]'
-                      : 'bg-[var(--secondary-color)] text-[var(--background-color)] border-b-6 border-[var(--secondary-color-accent)]'
-                  )}
                 >
-                  <CategoryIcon size={18} />
-                  <span>{category.label}</span>
-                  <span
-                    className={clsx(
-                      'text-xs px-2 py-1 rounded-full',
-                      isSelected
-                        ? 'bg-[var(--background-color)]/20 text-[var(--background-color)]'
-                        : 'bg-[var(--background-color)] text-[var(--secondary-color)]'
-                    )}
+                  <ActionButton
+                    onClick={() => handleCategorySelect(category.id)}
+                    colorScheme={isSelected ? 'main' : 'secondary'}
+                    borderColorScheme={isSelected ? 'main' : 'secondary'}
+                    className='w-auto px-4 py-3 text-base font-medium'
                   >
-                    {stats.unlocked}/{stats.total}
-                  </span>
-                </motion.button>
+                    <CategoryIcon size={18} />
+                    <span>{category.label}</span>
+                    <span
+                      className={clsx(
+                        'text-xs px-2 py-1 rounded-full',
+                        isSelected
+                          ? 'bg-[var(--background-color)]/20 text-[var(--background-color)]'
+                          : 'bg-[var(--background-color)] text-[var(--secondary-color)]'
+                      )}
+                    >
+                      {categoryStats.unlocked}/{categoryStats.total}
+                    </span>
+                  </ActionButton>
+                </motion.div>
               );
             })}
           </div>
